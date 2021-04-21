@@ -12,6 +12,7 @@ namespace DAL
             : base(options)
         {
             Database.EnsureCreated();
+            base.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
 

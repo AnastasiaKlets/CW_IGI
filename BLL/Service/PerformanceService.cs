@@ -72,5 +72,6 @@ namespace BLL
             return _repositoryPerformanse.GetById(id).Result.ToDTOPerformance();
         }
 
+
     }
 }

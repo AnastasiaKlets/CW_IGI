@@ -6,9 +6,6 @@
 
 <h1>ListPerformance</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead> 
         <tr>
@@ -43,8 +40,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Edit", "EditPerformance", new { id=item.Id }) |
                 @Html.ActionLink("Delete", "DeletePerformance", new { id=item.Id }) |
                 @Html.ActionLink("Add", "AddPerformance", new {})
             </td>

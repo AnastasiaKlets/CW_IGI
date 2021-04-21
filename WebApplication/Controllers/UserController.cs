@@ -22,12 +22,14 @@ namespace WebApplication
         public UserController(UserService userService)
         {
             _userService = userService;
+            
         }
 
         [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
-            return View(_userService.GetUsers());
+            //return View(_userService.GetUsers());
+            return RedirectToAction("ListPerformance", "Performance", new { });
         }
 
         public IActionResult Registration()
@@ -41,9 +43,12 @@ namespace WebApplication
             await _userService.Registration(viewModel.Login, viewModel.Password, viewModel.Fio, viewModel.Mail, viewModel.Age);
             return RedirectToAction(nameof(Index));
         }
-        public IActionResult Login()
+        public IActionResult Login() //????
         {
-            return View();
+            if (!User.Identity.IsAuthenticated)
+                return View();
+            else
+                return RedirectToAction("ListPerformance", "Performance", new { });
         }
         [HttpPost]
         public async Task<IActionResult> LoginPost(LoginViewModel viewModel)
@@ -54,6 +59,7 @@ namespace WebApplication
                 await Authenticate(user);
             }
             return RedirectToAction(nameof(Index));
+            //return RedirectToAction("ListPerformance", "Performance", new { });
         }
 
         private async Task Authenticate(User user)

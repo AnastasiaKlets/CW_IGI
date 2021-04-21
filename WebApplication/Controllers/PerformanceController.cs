@@ -24,8 +24,16 @@ namespace WebApplication.Controllers
         {
             return View(_perfomanceServise.GetPerformances());
         }
-       
 
+
+        public IActionResult AddPerformance()
+        {
+            return View(new AddPerformanceViewModel());
+        }
+        public IActionResult EditPerformance(int Id)
+        {
+            return View(_perfomanceServise.GetPerformanceById(Id));
+        }
         public IActionResult DeletePerformance(int Id)
         {
             _perfomanceServise.DeletePerformance(_perfomanceServise.GetPerformanceById(Id));
@@ -39,11 +47,12 @@ namespace WebApplication.Controllers
             return RedirectToAction(nameof(this.ListPerformance));
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> AddPerformance(BLL.DTO.DTOPerformance viewModel)
-        //{//Логика
-        //    await _perfomanceServise.AddPerformance(viewModel.Name, viewModel.Duration, viewModel.DTOGenres, viewModel.DTOActors, viewModel.DTOAgeQualification, viewModel.Description);
-        //    return RedirectToAction(nameof(this.ListPerformance));
-        //}
+        [HttpPost]
+        public IActionResult EditPerformance(DTOPerformance viewModel)
+        {//Логика
+            _perfomanceServise.UpdatePerformance(viewModel.Id, viewModel.Name, viewModel.Duration, viewModel.DTOGenres, viewModel.DTOActors, viewModel.DTOAgeQualification, viewModel.Description);
+            return RedirectToAction(nameof(this.ListPerformance));
+        }
+
     }
 }

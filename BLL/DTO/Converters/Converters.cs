@@ -14,8 +14,8 @@ namespace BLL.DTO.Converters
             res.Id = obj.Id;
             res.Name = obj.Name;
             res.Duration =obj.Duration;
-            res.DTOActors = obj.Actors?.Select(e=>e.ToDTOActor());
             res.DTOGenres = obj.Genres?.Select(g => g.ToDTOGenre());
+            res.DTOActors = obj.Actors?.Select(e=>e.ToDTOActor());            
             res.DTOAgeQualification = obj.AgeQualification?.ToDTOAgeQualification();
             res.Description = obj.Description;
             return res;
@@ -109,16 +109,125 @@ namespace BLL.DTO.Converters
             };
             return res;
         }
-        //public static DTOTicket ToDTOTicket(this Ticket ticket)
-        //{
-        //    var res = new DTOTicket()
-        //    {
-        //        Id = ticket.Id,
-        //        dTOSession = ticket.Session.ToDTOSession(),
-                
-        //    };
-        //    return res;
-        //} 
+        public static DTOHall ToDTOHall (this Hall hall)
+        {
+            var res = new DTOHall()
+            {                   
+                Id = hall.Id,
+                Type = hall.Type,
+            };
+            return res;
+        }
+        public static Hall FromDTOHall (this DTOHall dTOHall)
+        {
+            var res = new Hall()
+            {
+                Id = dTOHall.Id,
+                Type = dTOHall.Type,
+            };
+            return res;
+        }
 
+        public static DTOTypeOfSeat  ToDTOTypeOfSeat(this TypeOfSeat typeOfSeat)
+        {
+            var res = new DTOTypeOfSeat() 
+            {
+                Id = typeOfSeat.Id,
+                Price = typeOfSeat.Price,
+                Name = typeOfSeat.Name,
+            };
+            return res;
+        }
+
+        public static TypeOfSeat FromDTOTypeOfSeat(this DTOTypeOfSeat typeOfSeat)
+        {
+            var res = new TypeOfSeat()
+            {
+                Id = typeOfSeat.Id,
+                Price = typeOfSeat.Price,
+                Name = typeOfSeat.Name,
+            };
+            return res;
+        }
+
+        public static DTOPlace ToDTOPlace (this Place place)
+        {
+            var res = new DTOPlace()
+            {
+                Id = place.Id,
+                DTOHall = place.Hall?.ToDTOHall(),
+                DTOTypeOfSeat = place.TypeOfSeat?.ToDTOTypeOfSeat(),
+                Row = place.Row,
+            };
+            return res;
+        }
+
+        public static Place FromDTOPlace (this DTOPlace place)
+        {
+            var res = new Place()
+            {
+                Id = place.Id,
+                Hall = place.DTOHall.FromDTOHall(),
+                Row = place.Row,
+                TypeOfSeat = place.DTOTypeOfSeat.FromDTOTypeOfSeat(),
+            };
+            return res;
+        }
+
+        public static DTOUser ToDTOUser (this User user)
+        {
+            var res = new DTOUser()
+            {
+                Id = user.Id,
+                FullName = user.FullName,
+                Role = user.Role,
+                Age = user.Age,
+                Login =user.Login,
+                Password = user.Password,
+                Mail = user.Mail,
+            };
+            return res;
+        }
+
+        public static User FromDTOUser(this DTOUser user)
+        {
+            var res = new User()
+            {
+                Id = user.Id,
+                FullName = user.FullName,
+                Role = user.Role,
+                Age = user.Age,
+                Login = user.Login,
+                Password = user.Password,
+                Mail = user.Mail,
+            };
+            return res;
+        }
+
+        public static DTOTicket ToDTOTicket(this Ticket ticket)
+        {
+            var res = new DTOTicket()
+            {
+                Id = ticket.Id,
+                dTOSession = ticket.Session.ToDTOSession(),
+                dTOPlace = ticket.Place.ToDTOPlace(),
+                dTOUser = ticket.User.ToDTOUser(),
+                DatePurchase = ticket.DatePurchase,
+            };
+            return res;
+        }
+
+        public static Ticket FromDTOTicket(this DTOTicket ticket)
+        {
+            var res = new Ticket()
+            {
+                Id = ticket.Id,
+                Session = ticket.dTOSession.FromDTOSession(),
+                Place = ticket.dTOPlace.FromDTOPlace(),
+                User = ticket.dTOUser.FromDTOUser(),
+                DatePurchase = ticket.DatePurchase,
+            };
+            return res;
+        }
     }
 }

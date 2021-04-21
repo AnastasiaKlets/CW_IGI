@@ -24,8 +24,10 @@ namespace DAL
 
         public async Task<T> Delete(T entity)
         {
-             _applicationContext.Set<T>().Remove(entity);
-            await _applicationContext.SaveChangesAsync();
+            //_applicationContext.Entry<T>(entity).State = EntityState.Detached;
+            var c = _applicationContext.SaveChangesAsync().Result;
+            _applicationContext.Set<T>().Remove(entity);
+            c = _applicationContext.SaveChangesAsync().Result;
             return entity;
         }
 

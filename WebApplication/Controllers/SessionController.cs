@@ -16,10 +16,10 @@ namespace WebApplication.Controllers
             _sessionServise = sessionServise;
         }
 
-        public IActionResult Index()
-        {
-            return View(_sessionServise.GetSessions());
-        }
+        //public IActionResult Index()
+        //{
+        //    return View(_sessionServise.GetSessions());
+        //}
 
     }
 }
