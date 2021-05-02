@@ -15,5 +15,7 @@ namespace BLL.DTO
         public IEnumerable<DTOSession> DTOSessions { get; set; }
         public DTOAgeQualification DTOAgeQualification { get; set; }
         public string Description { get; set; }
+
+        public string DTOImage { get; set; }
     }
 }

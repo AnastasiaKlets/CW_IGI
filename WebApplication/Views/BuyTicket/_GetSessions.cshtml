@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<BLL.DTO.DTOSession>
+
+<table class="table">
+    <thead>
+        <tr>
+            Время начала
+        </tr>
+        <tr>
+            Продолжительность
+        </tr>
+        <tr>
+            Количество свободных мест
+        </tr>
+        <tr></tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DTOPerformance.Duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuantityPlace)
+                </td>
+                <td>
+                    @Html.ActionLink("Выбрать место...", "PlaceSelection", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

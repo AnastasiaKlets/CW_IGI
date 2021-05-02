@@ -16,6 +16,8 @@ namespace Model
 
         public IEnumerable<Session> Sessions { get; set; }
 
+        public string Image { get; set; }
+
 
 
     }

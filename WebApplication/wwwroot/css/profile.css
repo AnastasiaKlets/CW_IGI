@@ -1,0 +1,31 @@
+.main__profile {
+    display: flex;
+    width: 20%;
+    margin: 5%;
+}
+
+.main__profile img {
+    display: flex;
+    z-index: 1;
+}
+
+.main__information__1 {
+    position: absolute;
+    background-color: rgb(27, 27, 26);
+    width: 60%;
+    height: 33%;
+    margin: 0% 20%;
+    color: white;
+    padding: 2%;
+}
+
+.main__information__2 {
+    position: absolute;
+    background-color: rgb(27, 27, 26);
+    padding: 2%;
+    color: white;
+    height: 10%;
+    width: 60%;
+    margin-top: 20%;
+    margin-left: 20%;
+}

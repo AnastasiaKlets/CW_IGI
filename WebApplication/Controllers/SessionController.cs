@@ -9,9 +9,9 @@ namespace WebApplication.Controllers
 {
     public class SessionController : Controller
     {
-        private readonly PlaceServise _sessionServise;
+        private readonly PlaceService _sessionServise;
 
-        public SessionController(PlaceServise sessionServise)
+        public SessionController(PlaceService sessionServise)
         {
             _sessionServise = sessionServise;
         }

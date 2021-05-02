@@ -1,4 +1,5 @@
 using BLL;
+using BLL.Service;
 using DAL;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -35,8 +36,14 @@ namespace WebApplication
             services.AddScoped<IRepository<Ticket>, Repository<Ticket>>();
             services.AddScoped<IRepository<Performance>, Repository<Performance>>();
             services.AddScoped<IRepository<Session>, Repository<Session>>();
+            services.AddScoped<IRepository<TypeOfSeat>, Repository<TypeOfSeat>>();
+            services.AddScoped<IRepository<Place>, PlaceRepository>();
+            services.AddScoped<IRepository<Hall>, Repository<Hall>>();
             services.AddScoped<UserService>();
-            services.AddScoped<PerformanceService>(); 
+            services.AddScoped<PerformanceService>();
+            services.AddScoped<PlaceService>();
+            //services.AddScoped<IRepository<Session>, SessionRepository>();
+            services.AddScoped<SessionRepository>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions

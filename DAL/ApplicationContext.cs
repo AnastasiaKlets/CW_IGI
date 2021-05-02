@@ -11,7 +11,8 @@ namespace DAL
         public ApplicationContext(DbContextOptions options)
             : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
             base.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
 
@@ -35,11 +36,15 @@ namespace DAL
             modelBuilder.Entity<Performance>()
                  .HasMany(c => c.Actors)
                  .WithMany(s => s.Performances);
-
-            base.OnModelCreating(modelBuilder);
+            
             modelBuilder.Entity<Performance>()
                  .HasMany(c => c.Genres)
                  .WithMany(s => s.Performances);
+
+            //modelBuilder.Entity<Session>()
+            //    .HasOne<Performance>(e => e.Performance)
+            //    .WithMany();
+
         }
     }
 }

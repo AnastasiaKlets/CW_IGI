@@ -1,0 +1,14 @@
+﻿@model Models.BuyViewModel
+
+@{
+    ViewData["Title"] = "Buy";
+}
+
+@await Html.PartialAsync("_GetSessions")
+
+@section scripts{
+    <script src="~/lib/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.min.js"></script>
+}
+
+<h1>Buy</h1>
+

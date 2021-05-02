@@ -18,6 +18,7 @@ namespace BLL.DTO.Converters
             res.DTOActors = obj.Actors?.Select(e=>e.ToDTOActor());            
             res.DTOAgeQualification = obj.AgeQualification?.ToDTOAgeQualification();
             res.Description = obj.Description;
+            res.DTOImage = obj.Image;
             return res;
         }
         public static DTOActor ToDTOActor(this Actor actor)
@@ -57,6 +58,7 @@ namespace BLL.DTO.Converters
                 Genres = obj.DTOGenres?.Select(g=>g.FromDTOGenre()),
                 AgeQualification = obj.DTOAgeQualification?.FromDTOAgeQualification(),
                 Description = obj.Description,
+                Image = obj.DTOImage,
             };
             return res;
         }

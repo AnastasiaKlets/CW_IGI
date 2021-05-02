@@ -9,13 +9,13 @@ namespace DAL
      public class Repository<T> : IRepository<T> where T : class
     {
 
-        private readonly ApplicationContext _applicationContext;
+        protected readonly ApplicationContext _applicationContext;
 
         public Repository(ApplicationContext applicationContext)
         {
             _applicationContext = applicationContext;
         }
-        public async Task<T> Create(T entity)
+        public virtual async Task<T> Create(T entity)
         {
             await _applicationContext.Set<T>().AddAsync(entity);
             await _applicationContext.SaveChangesAsync();
@@ -36,12 +36,12 @@ namespace DAL
             return await _applicationContext.Set<T>().FindAsync(id);
         }
 
-        public IEnumerable<T> Read()
+        public virtual IEnumerable<T> Read()
         {
             return _applicationContext.Set<T>();
         }
 
-        public async Task<T> Update(T entity)
+        public virtual async Task<T> Update(T entity)
         {
              _applicationContext.Set<T>().Update(entity);
             await _applicationContext.SaveChangesAsync();
