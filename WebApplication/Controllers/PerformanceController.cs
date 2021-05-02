@@ -40,6 +40,18 @@ namespace WebApplication.Controllers
             return RedirectToAction(nameof(this.ListPerformance));
         }
 
+        public IActionResult ViewPerformances()
+        {
+            return View("_PerformancesList", _perfomanceServise.GetPerformances());
+        }
+
+        public IActionResult GetSessionsById(int id)
+        {
+            var cntrl = new Models.GetPerfomenceDecriptionViewModel(_perfomanceServise.GetPerformanceById(id), _perfomanceServise.GetSessionsByPerformanceId(id));
+
+            return View("GetPerformanceDescription", cntrl);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddPerformance(AddPerformanceViewModel viewModel)
         {//Логика

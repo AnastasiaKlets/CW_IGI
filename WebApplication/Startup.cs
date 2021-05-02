@@ -39,6 +39,7 @@ namespace WebApplication
             services.AddScoped<IRepository<TypeOfSeat>, Repository<TypeOfSeat>>();
             services.AddScoped<IRepository<Place>, PlaceRepository>();
             services.AddScoped<IRepository<Hall>, Repository<Hall>>();
+            services.AddScoped<IRepository<Actor>, Repository<Actor>>();
             services.AddScoped<UserService>();
             services.AddScoped<PerformanceService>();
             services.AddScoped<PlaceService>();
@@ -84,7 +85,7 @@ namespace WebApplication
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=User}/{action=Login}/{id?}");
+                    pattern: "{controller=Performance}/{action=ViewPerformances}/{id?}");
             });
         }
     }

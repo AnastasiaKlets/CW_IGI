@@ -1,0 +1,10 @@
+﻿@model IEnumerable<BLL.DTO.DTOPerformance>
+
+@foreach (var p in Model)
+{
+
+    <div class="main__afisha">
+        
+        @Html.ActionLink(p.Name, "GetSessionsById", "Performance", new { Id = p.Id })
+    </div>
+}

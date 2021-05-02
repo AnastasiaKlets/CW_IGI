@@ -20,14 +20,14 @@ namespace BLL
         private readonly IRepository<Genre> _repositoryGenre;
 
         public PerformanceService(IRepository<Performance> repositoryPerformanse, IRepository<Session> repositorySession, SessionRepository sessionReadRepository,
-            IRepository<Actor> repositoryActor, IRepository<AgeQualification> repositoryAge, IRepository<Genre> repositoryGenre)
+            IRepository<Actor> repositoryActor/*,IRepository<AgeQualification> repositoryAge, IRepository<Genre> repositoryGenre*/)
         {
             _repositoryPerformanse = repositoryPerformanse;
             _repositorySession = repositorySession;
             _sessionReadRepository = sessionReadRepository;
             _repositoryActor = repositoryActor;
-            _repositoryAge = repositoryAge;
-            _repositoryGenre = repositoryGenre;
+            //_repositoryAge = repositoryAge;
+            //_repositoryGenre = repositoryGenre;
         }
 
         public IEnumerable<DTOPerformance> GetPerformances()
@@ -83,7 +83,8 @@ namespace BLL
 
         public IEnumerable<DTOSession> GetSessionsByPerformanceId(int performanceId)
         {
-            return _repositoryPerformanse.GetById(performanceId).Result.Sessions.Select(e => e.ToDTOSession());
+            return _sessionReadRepository.Read()?.Where(e => e.Performance.Id == performanceId)?.Select(e=>e.ToDTOSession());
+            //return _repositoryPerformanse.GetById(performanceId).Result.Sessions.Select(e => e.ToDTOSession());
         }
 
         public IEnumerable<DTOSession> ReadSessionByDate(DateTime dateTimeSession )
