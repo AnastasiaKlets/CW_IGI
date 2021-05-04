@@ -22,7 +22,7 @@ namespace WebApplication
         public UserController(UserService userService)
         {
             _userService = userService;
-            
+
         }
 
         [Authorize(Roles = "Admin")]
@@ -34,19 +34,20 @@ namespace WebApplication
 
         public IActionResult Registration()
         {
-            return View();
+            return View("Registration2");
+            //return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> RegistrationPost(RegistrationViewModel viewModel)
         {
             await _userService.Registration(viewModel.Login, viewModel.Password, viewModel.Fio, viewModel.Mail, viewModel.Age);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Login));
         }
         public IActionResult Login() //????
         {
             if (!User.Identity.IsAuthenticated)
-                return View();
+                return View("Login2");
             else
                 return RedirectToAction("ListPerformance", "Performance", new { });
         }

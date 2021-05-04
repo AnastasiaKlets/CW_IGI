@@ -1,0 +1,24 @@
+﻿@model WebApplication.Models.RegistrationViewModel
+
+@{
+    ViewData["Title"] = "Registration";
+}
+
+<div class="login-page">
+    <div class="form">
+        <form class="register-form" asp-action="RegistrationPost">
+            <input type="text" asp-for="Fio" placeholder="Name*">
+            <input type="number" asp-for="Age" placeholder="Age*">
+            <input type="email" asp-for="Mail" placeholder="Email address*">
+            <input type="text" asp-for="Login" placeholder="Login*">
+            <input type="password" asp-for="Password" placeholder="Password*">
+            <label asp-for="ConfirmPassword" class="control-label"></label>
+            <input asp-for="ConfirmPassword" class="form-control" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            <div class="form-group">
+                <input type="submit" value="Sign up"/>
+            </div>
+            <p class="message">Already registered? @Html.ActionLink("Sign in!", "Login", "User")</p>
+        </form>
+    </div>
+</div>

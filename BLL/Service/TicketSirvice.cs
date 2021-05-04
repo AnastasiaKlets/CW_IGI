@@ -39,5 +39,7 @@ namespace BLL
         {
              _ticketRepository.Delete(ticket.FromDTOTicket());
         }
+
+      
     }
 }
