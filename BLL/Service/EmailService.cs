@@ -14,8 +14,8 @@ namespace BLL.Service
         {
             var emailMessage = new MimeMessage();
             
-            emailMessage.From.Add(new MailboxAddress("Администрация сайта", "login@yandex.ru"));
-            emailMessage.To.Add(new MailboxAddress("", email));
+            emailMessage.From.Add(new MailboxAddress("Администрация сайта", "main@example.com"));
+            emailMessage.To.Add(new MailboxAddress("Happy Buyer", email));
             emailMessage.Subject = subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html)
             {
@@ -24,8 +24,8 @@ namespace BLL.Service
 
             using (var client = new SmtpClient())
             {
-                await client.ConnectAsync("smtp.yandex.ru", 25, false);
-                await client.AuthenticateAsync("login@yandex.ru", "password");
+                await client.ConnectAsync("smtp.gmail.com", 465, true);
+                await client.AuthenticateAsync("klecz.anastasia@gmail.com", "hades31337");
                 await client.SendAsync(emailMessage);
 
                 await client.DisconnectAsync(true);

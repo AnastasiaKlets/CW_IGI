@@ -31,7 +31,7 @@ namespace DAL
             return entity;
         }
 
-        public async Task<T> GetById(int id)
+        public virtual async Task<T> GetById(int id)
         {
             return await _applicationContext.Set<T>().FindAsync(id);
         }

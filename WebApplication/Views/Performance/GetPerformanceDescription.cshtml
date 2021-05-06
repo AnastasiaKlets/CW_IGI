@@ -1,11 +1,16 @@
 ﻿@model Models.GetPerfomenceDecriptionViewModel
 
 <div class="main__profile">
-    <img src="img/afisha.jpg" alt="poster__">
+    <div class="description-container">
+    <img class="poster" src="img/afisha.jpg" alt="poster__">
     <div class="main__information__1">
         Information about theatrical performance: @Html.DisplayFor(e => e.performance.Description)
     </div>
-    <table>
+
+    </div>
+    <div class="place-info-table-container">
+
+    <table class="place-info-table">
         <thead>
             <tr>
                 <th>
@@ -31,24 +36,25 @@
             }
         </tbody>
     </table>
-</div>
+    </div>
 
-<div class="main__logo">Here you can buy tickets </div>
 <div class="login-page">
+<div class="main__logo">Here you can buy tickets </div>
     <div class="form">
-        <form class="login-form">
+        <form class="login-form" asp-action="BuyTicketForm">
             <div class="login_text">Your name</div>
-            <input type="text" placeholder="Name*" />
+            <input type="text" placeholder="Name*" name="BuyerName" required/>
             <div class="login_text">Your email</div>
-            <input type="password" placeholder="Email*" />
+            <input type="email" placeholder="Email*" name="BuyerEmail" required/>
             <div class="login_text">Name of performance</div>
-            <input type="text" placeholder="Name of performance*" />
+            <input type="text" placeholder="Name of performance*" name="BuyerPerformance" required/>
             <div class="main__textarea">
                 <br>Then, in the following sequence, specify the necessary information: <br> -DATE OF THE PERFORMANCE: dd. mm. yyyy.<br> - NUMBER OF TICKETS: from 1 to 10 <br> - SEATS: according to the color indicated on the hall plan (orange, yellow,
                 blue, red, purple, green). <br>Please note that the color indicates the price categories. You can get acquainted with the ticket prices on the page "Ticket prices". -CONTACT PHONE NUMBER: +XXX XX XXX-XXX-XXX
             </div>
-            <textarea name="Text" class="textarea" cols="30" rows="10"></textarea>
-            <button>Send</button>
+            <textarea name="Text" class="textarea" cols="30" rows="10" required></textarea>
+            <button type="submit">Send</button>
         </form>
     </div>
+</div>
 </div>

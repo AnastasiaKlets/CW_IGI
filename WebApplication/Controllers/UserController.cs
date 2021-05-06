@@ -49,7 +49,7 @@ namespace WebApplication
             if (!User.Identity.IsAuthenticated)
                 return View("Login2");
             else
-                return RedirectToAction("ListPerformance", "Performance", new { });
+                return RedirectToAction("ViewPerformances", "Performance", new { });
         }
         [HttpPost]
         public async Task<IActionResult> LoginPost(LoginViewModel viewModel)
@@ -59,8 +59,11 @@ namespace WebApplication
             {
                 await Authenticate(user);
             }
-            return RedirectToAction(nameof(Index));
-            //return RedirectToAction("ListPerformance", "Performance", new { });
+            _ = User.Identity.IsAuthenticated;
+            if(User.IsInRole("Admin"))
+                return RedirectToAction(nameof(Index));
+            else
+                return RedirectToAction("ViewPerformances", "Performance", new { });
         }
 
         private async Task Authenticate(User user)

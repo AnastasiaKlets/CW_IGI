@@ -1,17 +1,18 @@
 .login-page {
     width: 860px;
-    padding: 8% 0 0;
-    margin-left: 5%;
-    margin-top: -5%;
+    padding: 6% 0 0;
+   margin: 0 auto; 
+/*    margin-left: 5%;
+    margin-top: -5%;*/*/
 }
 
 .form {
-    position: relative;
-    z-index: 1;
+   /* position: relative;
+    z-index: 1;*/
     color: white;
     background: rgba(32, 33, 34, 0.5);
     max-width: 960px;
-    margin: 0 auto 100px;
+    margin: 0 auto;
     padding: 45px;
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -77,6 +78,56 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 34px;
+    font-size: 1.3rem;
     color: white;
+}
+.main__profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    width:100%;
+}
+.place-info-table-container
+{
+   margin-top:10px;
+    width:100%;
+}
+.place-info-table {
+    
+    color: white;
+    margin: 0 auto;
+    font-size: 1.1rem;
+   width:50%;
+
+
+
+}
+
+td {
+    padding: 10px 5px;
+    text-align:center;
+}
+thead {
+    background-color: darkblue; /*!!!*/
+}
+tbody tr:nth-child(even) {
+    background-color: darkcyan; /*!!!*/
+}
+tbody tr:nth-child(odd) {
+    background-color: darkgray; /*!!!*/
+}
+.description-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width:100%;
+}
+.main__information__1 {
+    display: block;
+}
+.poster {
+    width: 100px;
 }

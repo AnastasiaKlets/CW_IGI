@@ -1,10 +1,13 @@
 ﻿@model IEnumerable<BLL.DTO.DTOPerformance>
 
-@foreach (var p in Model)
-{
 
-    <div class="main__afisha">
-        
-        @Html.ActionLink(p.Name, "GetSessionsById", "Performance", new { Id = p.Id })
-    </div>
-}
+<div class="main__afisha">
+    @foreach (var p in Model)
+    {
+
+        <a href="/Performance/GetSessionsById/@(p.Id)">
+            <img src=@(p.DTOImage) alt=@(p.Name) @*style="height: 100px; width: auto;"*@ />
+        </a>
+        @*@Html.ActionLink(p.Name, "GetSessionsById", "Performance", new { Id = p.Id })*@
+    }
+</div>

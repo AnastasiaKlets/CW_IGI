@@ -10,11 +10,11 @@
 }
 
 .main__information__1 {
-    position: absolute;
+  /*  position: absolute;*/
     background-color: rgb(27, 27, 26);
     width: 60%;
     height: 33%;
-    margin: 0% 20%;
+    /*margin: 0% 20%;*/
     color: white;
     padding: 2%;
 }

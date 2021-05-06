@@ -45,6 +45,8 @@ namespace WebApplication
             services.AddScoped<PlaceService>();
             //services.AddScoped<IRepository<Session>, SessionRepository>();
             services.AddScoped<SessionRepository>();
+            services.AddScoped<IRepository<AgeQualification>, Repository<AgeQualification>>();
+            services.AddScoped<PerformanceReadOnlyRepository>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions

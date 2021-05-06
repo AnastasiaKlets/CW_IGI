@@ -13,14 +13,16 @@ namespace BLL.DTO.Converters
             var res = new DTOPerformance();
             res.Id = obj.Id;
             res.Name = obj.Name;
-            res.Duration =obj.Duration;
+            res.Duration = obj.Duration;
             res.DTOGenres = obj.Genres?.Select(g => g.ToDTOGenre());
-            res.DTOActors = obj.Actors?.Select(e=>e.ToDTOActor());            
+            res.DTOActors = obj.Actors?.Select(e => e.ToDTOActor());
             res.DTOAgeQualification = obj.AgeQualification?.ToDTOAgeQualification();
             res.Description = obj.Description;
             res.DTOImage = obj.Image;
+            res.DTOSessions = obj.Sessions.Select(e => e.ToDTOSession());
             return res;
         }
+
         public static DTOActor ToDTOActor(this Actor actor)
         {
             var res = new DTOActor()
@@ -32,13 +34,14 @@ namespace BLL.DTO.Converters
         }
         public static DTOGenre ToDTOGenre(this Genre genre)
         {
-            var res = new DTOGenre() { 
+            var res = new DTOGenre()
+            {
                 Id = genre.Id,
                 Name = genre.Name,
             };
             return res;
         }
-        public static DTOAgeQualification  ToDTOAgeQualification(this AgeQualification age)
+        public static DTOAgeQualification ToDTOAgeQualification(this AgeQualification age)
         {
             var res = new DTOAgeQualification()
             {
@@ -54,8 +57,8 @@ namespace BLL.DTO.Converters
                 Id = obj.Id,
                 Name = obj.Name,
                 Duration = obj.Duration,
-                Actors = obj.DTOActors?.Select(a =>a.FromDTOActor()),
-                Genres = obj.DTOGenres?.Select(g=>g.FromDTOGenre()),
+                Actors = obj.DTOActors?.Select(a => a.FromDTOActor()),
+                Genres = obj.DTOGenres?.Select(g => g.FromDTOGenre()),
                 AgeQualification = obj.DTOAgeQualification?.FromDTOAgeQualification(),
                 Description = obj.Description,
                 Image = obj.DTOImage,
@@ -89,8 +92,8 @@ namespace BLL.DTO.Converters
             };
             return res;
         }
-       public static DTOSession ToDTOSession(this Session session)
-       {
+        public static DTOSession ToDTOSession(this Session session)
+        {
             var res = new DTOSession()
             {
                 Id = session.Id,
@@ -99,7 +102,7 @@ namespace BLL.DTO.Converters
                 QuantityPlace = session.QuantityPlace,
             };
             return res;
-       }
+        }
         public static Session FromDTOSession(this DTOSession session)
         {
             var res = new Session()
@@ -111,16 +114,16 @@ namespace BLL.DTO.Converters
             };
             return res;
         }
-        public static DTOHall ToDTOHall (this Hall hall)
+        public static DTOHall ToDTOHall(this Hall hall)
         {
             var res = new DTOHall()
-            {                   
+            {
                 Id = hall.Id,
                 Type = hall.Type,
             };
             return res;
         }
-        public static Hall FromDTOHall (this DTOHall dTOHall)
+        public static Hall FromDTOHall(this DTOHall dTOHall)
         {
             var res = new Hall()
             {
@@ -130,9 +133,9 @@ namespace BLL.DTO.Converters
             return res;
         }
 
-        public static DTOTypeOfSeat  ToDTOTypeOfSeat(this TypeOfSeat typeOfSeat)
+        public static DTOTypeOfSeat ToDTOTypeOfSeat(this TypeOfSeat typeOfSeat)
         {
-            var res = new DTOTypeOfSeat() 
+            var res = new DTOTypeOfSeat()
             {
                 Id = typeOfSeat.Id,
                 Price = typeOfSeat.Price,
@@ -152,7 +155,7 @@ namespace BLL.DTO.Converters
             return res;
         }
 
-        public static DTOPlace ToDTOPlace (this Place place)
+        public static DTOPlace ToDTOPlace(this Place place)
         {
             var res = new DTOPlace()
             {
@@ -164,7 +167,7 @@ namespace BLL.DTO.Converters
             return res;
         }
 
-        public static Place FromDTOPlace (this DTOPlace place)
+        public static Place FromDTOPlace(this DTOPlace place)
         {
             var res = new Place()
             {
@@ -176,7 +179,7 @@ namespace BLL.DTO.Converters
             return res;
         }
 
-        public static DTOUser ToDTOUser (this User user)
+        public static DTOUser ToDTOUser(this User user)
         {
             var res = new DTOUser()
             {
@@ -184,7 +187,7 @@ namespace BLL.DTO.Converters
                 FullName = user.FullName,
                 Role = user.Role,
                 Age = user.Age,
-                Login =user.Login,
+                Login = user.Login,
                 Password = user.Password,
                 Mail = user.Mail,
             };

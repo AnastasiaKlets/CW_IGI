@@ -53,6 +53,25 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
+        public IActionResult BuyTicketForm(string BuyerName, string BuyerEmail, string BuyerPerformance, string Text)
+        {
+            //TODO: добавить обработку
+
+            return RedirectToAction();
+        }
+
+        [HttpPost]
+        public IActionResult GetPerformanceByDate(DateTime searchDate)
+        {
+            //TODO: добавить обработку
+            var performances = _perfomanceServise
+                .GetPerformances()
+                .Where(e => (bool)e?.DTOSessions
+                .Any(s => s?.Date >= searchDate && s?.Date <= searchDate.AddDays(1)));
+
+            return View("_PerformancesList", performances);
+        }
+        [HttpPost]
         public async Task<IActionResult> AddPerformance(AddPerformanceViewModel viewModel)
         {//Логика
             await _perfomanceServise.AddPerformance(viewModel.Name, viewModel.Duration, viewModel.Genres?.Select(e => e?.ToDTOGenre()), viewModel.Actors?.Select(e => e?.ToDTOActor()), viewModel.AgeQualification?.ToDTOAgeQualification(), viewModel.Description);

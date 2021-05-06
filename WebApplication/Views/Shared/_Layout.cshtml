@@ -7,13 +7,13 @@
     <!-- Развалиться без бутстрапа весь остальной интерфейс => нужно будет восстановить из гита исходный -->
     <!--<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />-->
     <link rel="stylesheet" href="~/css/main.css" />
-    <link rel="stylesheet" href="~/css/profile.css"/>
-    <link rel="stylesheet" href="~/css/afisha.css"/>
+    <link rel="stylesheet" href="~/css/profile.css" />
+    <link rel="stylesheet" href="~/css/afisha.css" />
 </head>
 <body>
     <header class="header">
         <div class="header__logo">
-            <a href="main.html">LOGO</a>
+            <a asp-controller="Performance" asp-action="ViewPerformances">LOGO</a>
         </div>
         <div class="header__profile">
             <a href="profile.html">
@@ -21,23 +21,40 @@
             </a>
         </div>
         <div class="main__basket">Basket</div>
-        <div class="header__registration">
-            <a href="autorization.html"> SignIn</a>
-        </div>
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="header__registration">
+                <a asp-controller="User" asp-action="Login">SignIn</a>
+            </div> }
+        else
+        {
+            <div class="header__registration">
+                <a asp-controller="User" asp-action="Logout">Logout</a>
+            </div>
+        }
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="header__registration">
+                <a asp-controller="User" asp-action="Index">Admin panel</a>
+            </div>
+        }
     </header>
     <main class="main">
 
         <div class="main__search">
 
-            <div class="main__search__name">
-                Name
-                <input type="text" placeholder="Enter name" class="main__search__name__input">
-            </div>
-            <button class="button__search">Search</button>
-            <div class="main__search__date">
-                Date
-                <input type="date" class="main__search__name__input">
-            </div>
+            @*<div class="main__search__name">
+                    Name
+                    <input type="text" placeholder="Enter name" class="main__search__name__input">
+                </div>*@
+            @*<button class="button__search">Search</button>*@
+            <form asp-action="GetPerformanceByDate">
+                <div class="main__search__date">
+                    Date
+                    <input type="date" class="main__search__name__input" name="searchDate">
+                    <button type="submit" style="background-color: rgb(26, 156, 179);">Search</button>
+                </div>
+            </form>
         </div>
         @RenderBody()
         </div>

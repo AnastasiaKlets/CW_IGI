@@ -18,21 +18,23 @@ namespace BLL
         private readonly IRepository<Actor> _repositoryActor;
         private readonly IRepository<AgeQualification> _repositoryAge;
         private readonly IRepository<Genre> _repositoryGenre;
+        private readonly PerformanceReadOnlyRepository _perfRO;
 
-        public PerformanceService(IRepository<Performance> repositoryPerformanse, IRepository<Session> repositorySession, SessionRepository sessionReadRepository,
-            IRepository<Actor> repositoryActor/*,IRepository<AgeQualification> repositoryAge, IRepository<Genre> repositoryGenre*/)
+        public PerformanceService(IRepository<Performance> repositoryPerformanse, IRepository<Session> repositorySession, SessionRepository sessionReadRepository
+           /* IRepository<Actor> repositoryActor */,IRepository<AgeQualification> repositoryAge/*, IRepository<Genre> repositoryGenre*/, PerformanceReadOnlyRepository perfRO)
         {
             _repositoryPerformanse = repositoryPerformanse;
             _repositorySession = repositorySession;
             _sessionReadRepository = sessionReadRepository;
-            _repositoryActor = repositoryActor;
-            //_repositoryAge = repositoryAge;
-            //_repositoryGenre = repositoryGenre;
+          //  _repositoryActor = repositoryActor;
+            _repositoryAge = repositoryAge;
+            //  _repositoryGenre = repositoryGenre;
+            _perfRO = perfRO;
         }
 
         public IEnumerable<DTOPerformance> GetPerformances()
         {
-            return _repositoryPerformanse.Read().Select(e => e.ToDTOPerformance());
+            return _perfRO.Read().Select(e => e.ToDTOPerformance());
         }
 
         public IEnumerable<DTOSession> GetSessions()
@@ -78,7 +80,7 @@ namespace BLL
 
         public DTOPerformance GetPerformanceById(int id)
         {
-            return _repositoryPerformanse.GetById(id).Result.ToDTOPerformance();
+            return _perfRO.GetById(id).Result.ToDTOPerformance();
         }
 
         public IEnumerable<DTOSession> GetSessionsByPerformanceId(int performanceId)
@@ -124,6 +126,45 @@ namespace BLL
             else
                 return false;
         }
+
+        public async void UpdateAgeQualification(int id, string name )
+        {
+            AgeQualification age = new AgeQualification()
+            {
+                Id = id,
+                Name = name,
+            };
+            await _repositoryAge.Update(age);            
+        }
+
+        public async void AddAgeQulification(string name)
+        {
+            AgeQualification age = new AgeQualification()
+            {
+                Name = name,
+            };
+            await _repositoryAge.Create(age);
+        }
+
+        public async void DeleteAgeQulification(int id)
+        {
+            AgeQualification age = new AgeQualification()
+            {
+                Id = id,
+            };
+            await _repositoryAge.Delete(age);
+        }
+
+        public IEnumerable<AgeQualification> GetAgeQualification()
+        {
+            return _repositoryAge.Read();
+        }
+
+        public async Task<AgeQualification> GetAgeQualificationById(int id)
+        {
+            return await _repositoryAge.GetById(id);
+        }
+
 
 
     }
