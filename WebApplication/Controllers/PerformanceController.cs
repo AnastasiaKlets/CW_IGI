@@ -100,7 +100,7 @@ namespace WebApplication.Controllers
                 return View("UserTicketList", tickets);
             }
             else
-                return RedirectPermanent("/");
+                return Redirect("/");
 
         }
     }
