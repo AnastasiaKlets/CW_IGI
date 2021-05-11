@@ -20,13 +20,13 @@ namespace BLL
         private readonly IRepository<Genre> _repositoryGenre;
         private readonly PerformanceReadOnlyRepository _perfRO;
 
-        public PerformanceService(IRepository<Performance> repositoryPerformanse, IRepository<Session> repositorySession, SessionRepository sessionReadRepository
-           /* IRepository<Actor> repositoryActor */,IRepository<AgeQualification> repositoryAge/*, IRepository<Genre> repositoryGenre*/, PerformanceReadOnlyRepository perfRO)
+        public PerformanceService(IRepository<Performance> repositoryPerformanse, IRepository<Session> repositorySession, SessionRepository sessionReadRepository,
+          IRepository<Actor> repositoryActor ,IRepository<AgeQualification> repositoryAge/*, IRepository<Genre> repositoryGenre*/, PerformanceReadOnlyRepository perfRO)
         {
             _repositoryPerformanse = repositoryPerformanse;
             _repositorySession = repositorySession;
             _sessionReadRepository = sessionReadRepository;
-          //  _repositoryActor = repositoryActor;
+            _repositoryActor = repositoryActor;
             _repositoryAge = repositoryAge;
             //  _repositoryGenre = repositoryGenre;
             _perfRO = perfRO;
@@ -164,6 +164,27 @@ namespace BLL
         {
             return await _repositoryAge.GetById(id);
         }
+
+        public async void AddActor(string name)
+        {
+            Actor actor = new Actor()
+            {
+                FIO = name,
+            };
+            await _repositoryActor.Create(actor);
+        }
+
+        public async void UpdateActor(int id, string name)
+        {
+            Actor actor = new Actor()
+            {
+                Id = id,
+                FIO = name,
+            };
+            await _repositoryActor.Update(actor);                
+        }
+
+       /// public async void 
 
 
 

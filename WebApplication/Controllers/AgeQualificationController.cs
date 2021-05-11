@@ -22,7 +22,7 @@ namespace WebApplication.Controllers
         // GET: AgeQualificationController
         public ActionResult Index()
         {
-            return View(_performanceService.GetPerformances());
+            return View(_performanceService.GetAgeQualification());
         }
 
         // GET: AgeQualificationController/Details/5
