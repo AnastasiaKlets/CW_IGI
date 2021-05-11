@@ -40,6 +40,8 @@ namespace WebApplication
             services.AddScoped<IRepository<Place>, PlaceRepository>();
             services.AddScoped<IRepository<Hall>, Repository<Hall>>();
             services.AddScoped<IRepository<Actor>, Repository<Actor>>();
+            services.AddScoped<TicketSirvice>();
+            services.AddScoped<DAL.TicketRepository>();
             services.AddScoped<UserService>();
             services.AddScoped<PerformanceService>();
             services.AddScoped<PlaceService>();

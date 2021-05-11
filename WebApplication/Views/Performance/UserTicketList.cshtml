@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BLL.DTO.DTOTicket>
+
+@{
+    ViewData["Title"] = "Ticket history";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Performance name
+            </th>
+            <th>
+                Purchase date
+            </th>  
+            <th>
+                Session date
+            </th>
+            <th>
+                Row
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model)
+        {
+        <tr>
+            <td>
+                @(row.dTOSession?.DTOPerformance?.Name)
+            </td>
+            <td>
+                @(row.DatePurchase.ToString())
+            </td>
+            <td>
+                @(row.dTOSession.Date.ToString())
+            </td>
+            <td>
+                @(row.dTOPlace.Row)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

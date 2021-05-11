@@ -14,10 +14,14 @@ namespace WebApplication.Controllers
     public class PerformanceController : Controller
     {
         private readonly PerformanceService _perfomanceServise;
+        private readonly TicketSirvice _ticketSirvice;
+        private readonly UserService _userService;
 
-        public PerformanceController(PerformanceService perfomanceServise)
+        public PerformanceController(PerformanceService perfomanceServise, TicketSirvice ticketSirvice, UserService userService)
         {
             _perfomanceServise = perfomanceServise;
+            _ticketSirvice = ticketSirvice;
+            _userService = userService;
         }
 
         public IActionResult ListPerformance()
@@ -85,5 +89,19 @@ namespace WebApplication.Controllers
             return RedirectToAction(nameof(this.ListPerformance));
         }
 
+        [HttpGet]
+        public IActionResult GetTicketHistoryByUser()
+        {
+            var a = User.Identity.Name;
+            if (a?.Length > 0)
+            {
+                var user = _userService.GetUsers().FirstOrDefault(e => e.Login == a);
+                var tickets = _ticketSirvice.GetTicketsByUserId((int)user?.Id);
+                return View("UserTicketList", tickets);
+            }
+            else
+                return RedirectPermanent("/");
+
+        }
     }
 }

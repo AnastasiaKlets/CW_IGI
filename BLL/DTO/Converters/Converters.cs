@@ -214,9 +214,9 @@ namespace BLL.DTO.Converters
             var res = new DTOTicket()
             {
                 Id = ticket.Id,
-                dTOSession = ticket.Session.ToDTOSession(),
-                dTOPlace = ticket.Place.ToDTOPlace(),
-                dTOUser = ticket.User.ToDTOUser(),
+                dTOSession = ticket.Session?.ToDTOSession(),
+                dTOPlace = ticket.Place?.ToDTOPlace(),
+                dTOUser = ticket.User?.ToDTOUser(),
                 DatePurchase = ticket.DatePurchase,
             };
             return res;

@@ -20,7 +20,9 @@
                 <img src="~/img/profile.png" alt="profile">
             </a>
         </div>
-        <div class="main__basket">Basket</div>
+
+        <a class="main__basket" asp-controller="Performance" asp-action="GetTicketHistoryByUser">Basket</a>
+
         @if (!User.Identity.IsAuthenticated)
         {
             <div class="header__registration">
